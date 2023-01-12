@@ -37,7 +37,7 @@ public class BaseManager implements SaveInterfaces{
    }
    @Override
    public List<buyer> loadBuyers() {
-       return em.createQuery("SELECT b FROM Buyer b").getResultList();
+       return em.createQuery("SELECT b FROM buyer b").getResultList();
    }
     @Override
    public void saveitem(List<ShopItem> items) {
@@ -54,7 +54,7 @@ public class BaseManager implements SaveInterfaces{
    }
    @Override
    public List<ShopItem> loaditem() {
-       return em.createQuery("SELECT i FROM Items i").getResultList();
+       return em.createQuery("SELECT s FROM ShopItem s").getResultList();
    }
 
     

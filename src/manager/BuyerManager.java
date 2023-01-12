@@ -41,8 +41,8 @@ public class BuyerManager {
         int numberCustomer = scanner.nextInt(); scanner.nextLine();
         System.out.printf("У него %s евро%n",buyers.get(numberCustomer - 1).getBalance());
         System.out.println("Введите сумму: ");
-        double addM = scanner.nextDouble();scanner.nextLine();
-        buyers.get(numberCustomer - 1).setBalance(buyers.get(numberCustomer - 1).getBalance() + addM);
+        double addMoney = scanner.nextDouble();scanner.nextLine();
+        buyers.get(numberCustomer - 1).setBalance(buyers.get(numberCustomer - 1).getBalance() + addMoney);
         
     }
     

@@ -19,8 +19,8 @@ public class app {
     private final ItemManager itemManager;
     private final BuyerManager buyerManager;
     private final SaveInterfaces saveInterfaces;
-    private List<buyer>buyers;
-    private List<ShopItem>items;
+    private final List<buyer>buyers;
+    private final List<ShopItem>items;
          
      
      
