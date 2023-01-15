@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package manager;
+import entity.Punches;
 import entity.buyer;
 import entity.ShopItem;
 import java.util.List;
@@ -56,7 +57,22 @@ public class BaseManager implements SaveInterfaces{
    public List<ShopItem> loaditem() {
        return em.createQuery("SELECT s FROM ShopItem s").getResultList();
    }
+@Override
+   public void savePunches(List<Punches> Punchese) {
+        em.getTransaction().begin();
+       for (int i = 0; i < Punchese.size(); i++) {
+           Punches punchese = Punchese.get(i);
+           if(punchese.getId() == null){
+                em.persist(punchese);
+            }else{
+                em.merge(punchese);
+            }
+       }
+       em.getTransaction().commit();
+   }
 
-    
-    
+    @Override
+   public List<Punches> loadPunches() {
+       return em.createQuery("SELECT p FROM Punches p").getResultList();
+   }
 }

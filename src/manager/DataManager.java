@@ -4,6 +4,7 @@
  */
 package manager;
 
+import entity.Punches;
 import entity.buyer;
 import entity.ShopItem;
 import java.io.File;
@@ -27,13 +28,30 @@ public class DataManager implements SaveInterfaces{
     
     private final String FILENAME_BUYERS = "files/MyBuyers";
     private final String FILENAME_ITEMS = "files/MyItems";
+    private final String FILENAME_PUNCHES = "files/MyPunches";
     private final File file;
     
     public DataManager() {
         file = new File("files");
         file.mkdirs();
     }
-    
+        
+    @Override
+    public List<Punches> loadPunches() {
+        List<Punches> Punchese = new ArrayList<>();
+        try {
+            FileInputStream fileInputStream = new FileInputStream(FILENAME_PUNCHES);
+            ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
+            Punchese = (List<Punches>) objectInputStream.readObject();
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(DataManager.class.getName()).log(Level.SEVERE, "Нет такого файла", ex);
+        } catch (IOException ex) {
+            Logger.getLogger(DataManager.class.getName()).log(Level.SEVERE, "Ошибка ввода/вывода", ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(DataManager.class.getName()).log(Level.SEVERE, "Нет такого класса", ex);
+        }
+        return Punchese;
+    }
     @Override
     public List<buyer> loadBuyers() {
         List<buyer>  customers = new ArrayList<>();
@@ -92,11 +110,19 @@ public class DataManager implements SaveInterfaces{
             Logger.getLogger(DataManager.class.getName()).log(Level.SEVERE, "Ошибка ввода / вывода", ex);
         }
     }
-
     
+    @Override
+    public void savePunches(List<Punches> Punchese){
+        try {
+            FileOutputStream fileOutputStream = new FileOutputStream(FILENAME_PUNCHES);
+            ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
+            objectOutputStream.writeObject(Punchese);
+            objectOutputStream.flush();
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(DataManager.class.getName()).log(Level.SEVERE, "Нет такого файла", ex);
+        } catch (IOException ex) {
+            Logger.getLogger(DataManager.class.getName()).log(Level.SEVERE, "Ошибка ввода / вывода", ex);
+        }
+    }
     
-
-    
-
-
 }

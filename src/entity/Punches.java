@@ -60,7 +60,7 @@ public class Punches implements Serializable{
         return punchesDate;
     }
 
-    public void setPurchaseDate(Date punchesDate) {
+    public void setPunchesDate(Date punchesDate) {
         this.punchesDate = punchesDate;
     }
     
